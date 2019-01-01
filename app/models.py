@@ -11,7 +11,7 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
-    user_image = db.Column(db.String(20), default="/profile_pics/default.jpg")
+    user_image = db.Column(db.String(20), default="default.jpg")
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
