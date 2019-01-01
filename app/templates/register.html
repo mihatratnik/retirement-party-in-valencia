@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="page-header section-dark" style="background-image: url('../static/img/background_small.jpg')">
+        <div class="filter"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 ml-auto mr-auto">
+                    <div class="card card-register">
+                        <h3 class="title">Dobrodošli</h3>
+                        <form class="register-form" method="post">
+                            {{ form.hidden_tag() }}
+                            <p>
+                                {{ form.username.label }}
+                                {% if form.username.errors %}
+                                    {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                    <div class="form-control-feedback">
+                                        {% for error in form.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.username(class="form-control", placeholder="Uporabniško ime") }}
+                                {% endif %}
+                            </p>
+                            <p>
+                                {{ form.password.label }}
+                                {{ form.password(class="form-control", placeholder="Geslo") }}
+                            </p>
+                            <p>
+                                {{ form.confirm_password.label }}
+                                {{ form.confirm_password(class="form-control", placeholder="Potrdi geslo") }}
+                            </p>
+                            <p>
+                                {{ form.submit(class="btn btn-warning btn-block btn-round") }}
+                            </p>
+                        </form>
+                        <div class="forgot">
+                            <a href="{{ url_for('login') }}" class="btn btn-link btn-warning">Si že registriran?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock  content%}

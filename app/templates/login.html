@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="page-header section-dark" style="background-image: url('../static/img/background_small.jpg')">
+        <div class="filter"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 ml-auto mr-auto">
+                    <div class="card card-register">
+                        <h3 class="title">Dobrodošli</h3>
+                        <form class="register-form" method="post">
+                            {{ form.hidden_tag() }}
+                            <p>
+                                {{ form.username.label }}
+                                {% if form.username.errors %}
+                                    {{ form.username(type="text", class="form-control form-control-danger text-danger", id="inputDanger1", placeholder="Error") }}
+                                    <div class="form-control-feedback">
+                                        {% for error in form.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.username(class="form-control", placeholder="Uporabniško ime") }}
+                                {% endif %}
+                            </p>
+                            <p>
+                                {{ form.password.label }}
+                                {{ form.password(class="form-control", placeholder="Geslo") }}
+                            </p>
+                            <p>
+                                {{ form.remember_me() }} {{ form.remember_me.label }}
+                            </p>
+                            <p>
+                                {{ form.submit(class="btn btn-warning btn-block btn-round") }}
+                            </p>
+                            </form>
+                        <div class="forgot">
+                            <a href="register" class="btn btn-link btn-warning">Potrebuješ račun?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock  content%}

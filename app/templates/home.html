@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="page-header section-dark" style="background-image: url('../static/img/background_small.jpg')">
+        <div class="filter"></div>
+        <div class="content-center">
+            <div class="container">
+                <div class="title-brand">
+                    <h1 class="presentation-title">Dobrodošli v Valencii</h1>
+                </div>
+
+                <h2 class="presentation-subtitle text-center">Imeli se bomo super!</h2>
+            </div>
+            <div class="container">
+                <div class="motto text-center">
+                    <br />
+                    <a href="https://youtu.be/XL-XDNs76Cc" class="btn btn-outline-neutral btn-round btn-lg" target="_blank"><i class="fa fa-play"></i>  Oglej si Valencio</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-warning btn-round btn-lg"> Vpiši se</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-warning btn-round btn-lg">registriraj se</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

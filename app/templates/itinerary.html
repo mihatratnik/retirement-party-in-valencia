@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="section">
+        <div class="container">
+            <div class="col-md-8 ml-auto mr-auto">
+                {% for post in posts %}
+                <article class="media content-section">
+                    <img class="img-thumbnail img-responsive mt-3 mr-3" width="125" src="{{ url_for('static', filename='profile_pics/' + post.author.user_image) }}" alt="">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <a class="mr-2" href="#">{{ post.user_id }}</a>
+                            <small class="text-muted">{{ post.date_created.strftime('%d.%m.%Y %H:%M') }}</small>
+                        </div>
+                        <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                        <p class="article-content">{{ post.content }}</p>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
