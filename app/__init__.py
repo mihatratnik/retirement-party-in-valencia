@@ -2,7 +2,7 @@ import os
 import psycopg2
 from flask import Flask
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, login_url
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__))

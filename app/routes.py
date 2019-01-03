@@ -5,7 +5,7 @@ from flask import render_template, url_for, redirect, flash, request, abort
 from flask_login import login_user, login_required, logout_user, current_user
 from app import app, flask_bcrypt, db
 from app.forms import RegistrationForms, LoginForms, AccountForms, PostForm
-from app.models import User, Post
+from app.models import Users, Post
 
 
 @app.route('/')
@@ -18,7 +18,7 @@ def home():
 def login():
     form = LoginForms()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = Users.query.filter_by(username=form.username.data).first()
         if user and flask_bcrypt.check_password_hash(user.password_hash, form.password.data):
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
@@ -33,7 +33,7 @@ def register():
     form = RegistrationForms()
     if form.validate_on_submit():
         hashed_password = flask_bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        registered_user = User(username=form.username.data, password_hash=hashed_password)
+        registered_user = Users(username=form.username.data, password_hash=hashed_password)
         db.session.add(registered_user)
         db.session.commit()
         flash('User account successfully created', 'success')

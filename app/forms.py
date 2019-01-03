@@ -1,4 +1,4 @@
-from app.models import User
+from app.models import Users
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
@@ -16,7 +16,7 @@ class RegistrationForms(FlaskForm):
     submit = SubmitField('Registracija')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = Users.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError("Username already in use")
 
@@ -30,7 +30,7 @@ class LoginForms(FlaskForm):
     submit = SubmitField('Vpis')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = Users.query.filter_by(username=username.data).first()
         if not user:
             raise ValidationError("Uporabniško ime ni registrirano")
 
