@@ -11,7 +11,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '876d7d641614db92287481d8056d7bcf'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 heroku = Heroku(app)
