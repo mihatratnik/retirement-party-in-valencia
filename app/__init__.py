@@ -2,6 +2,7 @@ import os
 import psycopg2
 from flask import Flask
 from flask_bcrypt import Bcrypt
+from flask_heroku import Heroku
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,9 +11,10 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '876d7d641614db92287481d8056d7bcf'
-app.config['SQLALCHEMY_DATABASE_URI'] = psycopg2.connect(DATABASE_URL, sslmode='require')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+heroku = Heroku(app)
 flask_bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
